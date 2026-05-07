@@ -59,7 +59,7 @@ Exemplo: se a pasta temp contém os arquivos a.txt, www.html e run.exe, e també
 comando ls deve retornar os nomes dos arquivos e pastas em ordem alfabética, com um único registro por linha e, no
 caso das pastas, com “-” ao final do nome, como demonstrado a seguir.
 */
-void comando_ls(Nodo *pasta){
+void Comando_ls(Nodo *pasta){
     if (pasta == NULL || pasta->tipo != 1){
         printf("comando invalido\n");           //mensagem de erro caso a pasta seja null ou não seja uma pasta
         return;
@@ -90,7 +90,7 @@ cd teste2 acessa a pasta teste2 que está dentro da pasta corrente (caso exista)
 Comando: ma <nome do arquivo>
 O que faz: cria um arquivo (nó terminal) dentro da pasta corrente.
 Exemplo: ma quest.txt cria o arquivo quest.txt na pasta corrente.*/
-void comando_ma(Nodo *pasta, char nome[]){
+void Comando_ma(Nodo *pasta, char nome[]){
     if (pasta == NULL) {
         printf("comando invalido\n"); //mensagem de erro caso a pasta seja null
         return;
@@ -119,7 +119,7 @@ O que faz: cria uma pasta vazia dentro da pasta corrente.
 Exemplo: mp backup cria a pasta backup como subpasta da pasta corrente.*/
 
 
-void comando_mp(Nodo *pasta, char nome[]){
+void Comando_mp(Nodo *pasta, char nome[]){
     if (pasta == NULL) {    
         printf("comando invalido\n");                       //mensagem de erro caso a pasta seja null
         return;
@@ -162,11 +162,11 @@ Se a pasta corrente for teste2 que é subpasta da pasta temp que por sua vez est
 a ser exibido será “-temp-teste2->”
  */
 
-void mostrar_caminho(Nodo *atual) {   
+void Mostrar_caminho(Nodo *atual) {   
   if (atual->pai == NULL) {             // Se chegou na raiz, para e printa 
         return; 
     }
-mostrar_caminho(atual->pai); //volta ate a raiz e printa o (-)
+Mostrar_caminho(atual->pai); //volta ate a raiz e printa o (-)
   printf("-%s", atual->nome);
 }
 //main == suco da IA só pra testar 
@@ -179,22 +179,22 @@ int main() {
 
     // 2. Criando a pasta 'temp' na raiz
     printf("Criando a pasta 'temp' na raiz...\n");
-    comando_mp(atual, "temp");
+    Comando_mp(atual, "temp");
     
     // TRUQUE: Como nao temos o 'cd' ainda, vamos forcar o 'atual' a entrar na pasta 'temp'
     atual = atual->arquivo->inicio; 
 
     // 3. Criando a pasta 'teste2' dentro da 'temp'
     printf("Criando a pasta 'teste2' dentro de 'temp'...\n");
-    comando_mp(atual, "teste2");
+    Comando_mp(atual, "teste2");
 
     // TRUQUE: Forcando o 'atual' a entrar na pasta 'teste2'
     atual = atual->arquivo->inicio; 
 
     // 4. Criando arquivos desordenados dentro de 'teste2' para testar o ls
-    comando_ma(atual, "zebra.txt");
-    comando_ma(atual, "abacate.txt");
-    comando_mp(atual, "minha_pasta"); // criando uma subpasta aqui também
+    Comando_ma(atual, "zebra.txt");
+    Comando_ma(atual, "abacate.txt");
+    Comando_mp(atual, "minha_pasta"); // criando uma subpasta aqui também
 
     // ==========================================
     // A HORA DA VERDADE: TESTANDO SUAS FUNCOES
@@ -205,12 +205,12 @@ int main() {
     if (atual == raiz) {
         printf("->\n");
     } else {
-        mostrar_caminho(atual);
+        Mostrar_caminho(atual);
         printf("->\n");
     }
 
     printf("\n=== TESTE DO LS ===\n");
-    comando_ls(atual);
+    Comando_ls(atual);
 
     return 0;
 }
