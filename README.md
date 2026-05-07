@@ -116,4 +116,4 @@ qualquer pasta;
 ## Integrantes
 - Nícolas oliveira dos Santos
 - Raphael de Almeida Cruz
-- João Venâncio de Gonçalves Ribeiro Taques
+- João Venâncio d' Gonçalves Ribeiro Taques
